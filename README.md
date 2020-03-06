@@ -2,7 +2,7 @@
 <p align="center">
   <a href="https://github.com/Rebzzel/kiero/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/Rebzzel/kiero.svg?style=flat-square"/>
-  </a>  
+  </a>
   <a href="https://github.com/Rebzzel/kiero/stargazers">
     <img src="https://img.shields.io/github/stars/Rebzzel/kiero.svg?style=flat-square"/>
   </a>
@@ -60,12 +60,21 @@ int kieroExampleThread()
   // or
   if (kiero::init(kiero::RenderType::Auto) == kiero::Status::Success)
   {
+    // If you are using RenderType::Auto, you can check 
+    // whether the desired type is being used using kiero::getRenderType function
+    if (kiero::getRenderType() != kiero::RenderType::D3D9)
+    {
+      return 2;
+    }
+    
     // define KIERO_USE_MINHOOK must be 1
     // the index of the required function can be found in the METHODSTABLE.txt
     kiero::bind(42, (void**)&oEndScene, hkEndScene);
     
     // If you just need to get the function address you can use the kiero::getMethodsTable function
     oEndScene = (EndScene)kiero::getMethodsTable()[42];
+    
+    return 1;
   }
 
   return 0;
@@ -94,7 +103,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD fdwReason, LPVOID)
 ```
 MIT License
 
-Copyright (c) 2014-2019 Rebzzel
+Copyright (c) 2014-2020 Rebzzel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -114,3 +123,25 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+<br>
+
+---
+
+<br>
+<p align="center">
+  See also:
+  <br>
+  <a href="https://github.com/Rebzzel/sfs">
+    sfs
+  </a>
+  /
+  <a href="https://github.com/Rebzzel/PicPrompt">
+    PicPrompt
+  </a>
+  /
+  <a href="https://github.com/Rebzzel?tab=repositories">
+    ...
+  </a>
+</p>
+
+<br>
