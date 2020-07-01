@@ -329,7 +329,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 					IDXGISwapChain**,
 					ID3D11Device**,
 					D3D_FEATURE_LEVEL*,
-					ID3D11DeviceContext**))(D3D11CreateDeviceAndSwapChain))(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, featureLevels, 1, D3D11_SDK_VERSION, &swapChainDesc, &swapChain, &device, &featureLevel, &context) < 0)
+					ID3D11DeviceContext**))(D3D11CreateDeviceAndSwapChain))(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, featureLevels, 2, D3D11_SDK_VERSION, &swapChainDesc, &swapChain, &device, &featureLevel, &context) < 0)
 				{
 					::DestroyWindow(window);
 					::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
@@ -583,7 +583,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 			{
 #if KIERO_INCLUDE_VULKAN
 				HMODULE libVulkan;
-				if ((libVulkan = GetModuleHandle(KIERO_TEXT("vulcan-1.dll"))) == NULL)
+				if ((libVulkan = GetModuleHandle(KIERO_TEXT("vulkan-1.dll"))) == NULL)
 				{
 					return Status::ModuleNotFoundError;
 				}
@@ -654,7 +654,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 			{
 				type = RenderType::OpenGL;
 			}
-			else if (::GetModuleHandle(KIERO_TEXT("vulcan-1.dll")) != NULL)
+			else if (::GetModuleHandle(KIERO_TEXT("vulkan-1.dll")) != NULL)
 			{
 				type = RenderType::Vulkan;
 			}
